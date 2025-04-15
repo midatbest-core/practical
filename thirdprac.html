@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Volunteer Registration</title>
+  <style>
+    body { font-family: Arial; background: #f0f8ff; padding: 20px; }
+    form { background: #fff; padding: 20px; width: 320px; margin: auto; border-radius: 8px; }
+    input, textarea, select { width: 100%; margin: 8px 0; padding: 8px; }
+    .availability label { display: block; }
+    button { background: #28a745; color: white; border: none; padding: 10px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <form action="volunteer.php" method="POST" onsubmit="return validateVolunteerForm()">
+    <input type="text" name="fullname" placeholder="Full Name" required>
+    <input type="email" name="email" placeholder="Email Address" required>
+    <input type="text" name="phone" placeholder="Phone Number" required>
+    
+    <div class="availability">
+      <label><input type="checkbox" name="availability[]" value="Morning"> Morning</label>
+      <label><input type="checkbox" name="availability[]" value="Afternoon"> Afternoon</label>
+      <label><input type="checkbox" name="availability[]" value="Evening"> Evening</label>
+      <label><input type="checkbox" name="availability[]" value="Weekend"> Weekend</label>
+    </div>
+    
+    <select name="interest" required>
+      <option value="">-- Select Area of Interest --</option>
+      <option value="Event Setup">Event Setup</option>
+      <option value="Registration">Registration</option>
+      <option value="Clean-up">Clean-up</option>
+    </select>
+
+    <textarea name="comments" placeholder="Additional Comments"></textarea>
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    function validateVolunteerForm() {
+      const checkboxes = document.querySelectorAll('input[name="availability[]"]:checked');
+      if (checkboxes.length === 0) {
+        alert("Please select at least one availability option.");
+        return false;
+      }
+      return true;
+    }
+  </script>
+</body>
+</html>

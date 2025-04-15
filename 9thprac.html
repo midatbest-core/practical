@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Monthly Budget Tracker</title>
+  <style>
+    body { font-family: Arial; background: #e1f5fe; padding: 20px; }
+    form { background: #fff; padding: 20px; width: 320px; margin: auto; border-radius: 8px; }
+    input { width: 100%; margin: 8px 0; padding: 8px; }
+    button { background: #039be5; color: white; border: none; padding: 10px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <form action="budget.php" method="POST" onsubmit="return validateBudgetForm()">
+    <input type="number" name="income" placeholder="Monthly Income" required>
+    <input type="number" name="rent" placeholder="Rent Expense" required>
+    <input type="number" name="groceries" placeholder="Groceries Expense" required>
+    <input type="number" name="transport" placeholder="Transportation Expense" required>
+    <input type="number" name="entertainment" placeholder="Entertainment Expense" required>
+    <input type="number" name="utilities" placeholder="Utilities Expense" required>
+    <button type="submit">Save Budget</button>
+  </form>
+
+  <script>
+    function validateBudgetForm() {
+      const fields = document.querySelectorAll('input[type="number"]');
+      for (let field of fields) {
+        if (field.value === '' || parseFloat(field.value) < 0) {
+          alert("Please fill all fields with valid positive values.");
+          return false;
+        }
+      }
+      return true;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Product Comparison</title>
+  <style>
+    body { font-family: Arial; background: #fce4ec; padding: 20px; }
+    form { background: #fff; padding: 20px; width: 340px; margin: auto; border-radius: 8px; }
+    input { width: 100%; margin: 8px 0; padding: 8px; }
+    button { background: #d81b60; color: white; border: none; padding: 10px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <form action="compare.php" method="POST" onsubmit="return validateComparison()">
+    <h3>Product 1</h3>
+    <input type="text" name="product1" placeholder="Product Name 1" required>
+    <input type="number" name="price1" placeholder="Price 1" required>
+    <input type="number" name="rating1" placeholder="Rating 1 (1-5)" required>
+
+    <h3>Product 2</h3>
+    <input type="text" name="product2" placeholder="Product Name 2" required>
+    <input type="number" name="price2" placeholder="Price 2" required>
+    <input type="number" name="rating2" placeholder="Rating 2 (1-5)" required>
+
+    <button type="submit">Compare</button>
+  </form>
+
+  <script>
+    function validateComparison() {
+      const ratings = [document.querySelector('input[name="rating1"]').value, document.querySelector('input[name="rating2"]').value];
+      const prices = [document.querySelector('input[name="price1"]').value, document.querySelector('input[name="price2"]').value];
+
+      for (let r of ratings) {
+        if (r < 1 || r > 5 || isNaN(r)) {
+          alert("Ratings must be between 1 and 5.");
+          return false;
+        }
+      }
+
+      for (let p of prices) {
+        if (p <= 0 || isNaN(p)) {
+          alert("Prices must be positive numbers.");
+          return false;
+        }
+      }
+
+      return true;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Product Review</title>
+  <style>
+    body { font-family: Arial; background: #e8f5e9; padding: 20px; }
+    form { background: #fff; padding: 20px; width: 320px; margin: auto; border-radius: 8px; }
+    input, textarea, select { width: 100%; margin: 8px 0; padding: 8px; }
+    button { background: #43a047; color: white; border: none; padding: 10px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <form action="review.php" method="POST" onsubmit="return validateReviewForm()">
+    <input type="text" name="product" placeholder="Product Name" required>
+    <input type="text" name="reviewer" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Your Email" required>
+
+    <label>Rating:</label>
+    <select name="rating" required>
+      <option value="">-- Select Rating --</option>
+      <option value="1 Star">1 Star</option>
+      <option value="2 Stars">2 Stars</option>
+      <option value="3 Stars">3 Stars</option>
+      <option value="4 Stars">4 Stars</option>
+      <option value="5 Stars">5 Stars</option>
+    </select>
+
+    <textarea name="review" placeholder="Write your review..." required></textarea>
+    <button type="submit">Submit Review</button>
+  </form>
+
+  <script>
+    function validateReviewForm() {
+      const email = document.querySelector('input[name="email"]').value;
+      const emailRegex = /^\S+@\S+\.\S+$/;
+      if (!emailRegex.test(email)) {
+        alert("Please enter a valid email address.");
+        return false;
+      }
+      return true;
+    }
+  </script>
+</body>
+</html>

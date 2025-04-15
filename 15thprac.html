@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Conference Room Reservation</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f8ff;
+      padding: 20px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+    }
+
+    form {
+      background-color: white;
+      padding: 20px;
+      max-width: 400px;
+      margin: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      color: #34495e;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      box-sizing: border-box;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px 15px;
+      width: 100%;
+      background-color: #2980b9;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+
+  <script>
+    function validateForm() {
+      const room = document.getElementById("room").value;
+      const date = document.getElementById("date").value;
+      const start = document.getElementById("start").value;
+      const end = document.getElementById("end").value;
+      const emp = document.getElementById("employee").value;
+      const reason = document.getElementById("reason").value;
+
+      if (!room || !date || !start || !end || !emp || !reason) {
+        alert("All fields are required.");
+        return false;
+      }
+
+      if (start >= end) {
+        alert("End time must be after start time.");
+        return false;
+      }
+
+      return true;
+    }
+  </script>
+</head>
+<body>
+
+  <h2>Conference Room Reservation</h2>
+
+  <form action="conference_process.php" method="POST" onsubmit="return validateForm()">
+    <label>Room Name:</label>
+    <input type="text" name="room" id="room" required>
+
+    <label>Reservation Date:</label>
+    <input type="date" name="date" id="date" required>
+
+    <label>Start Time:</label>
+    <input type="time" name="start" id="start" required>
+
+    <label>End Time:</label>
+    <input type="time" name="end" id="end" required>
+
+    <label>Employee Name:</label>
+    <input type="text" name="employee" id="employee" required>
+
+    <label>Reason for Reservation:</label>
+    <input type="text" name="reason" id="reason" required>
+
+    <button type="submit">Reserve</button>
+  </form>
+
+</body>
+</html>

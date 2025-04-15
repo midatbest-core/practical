@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Vehicle Rental Reservation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      padding: 20px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+    }
+
+    form {
+      background-color: white;
+      padding: 20px;
+      max-width: 400px;
+      margin: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      color: #333;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      box-sizing: border-box;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px;
+      width: 100%;
+      background-color: #1abc9c;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+
+  <script>
+    function validateForm() {
+      const type = document.getElementById("vehicleType").value;
+      const pickup = document.getElementById("pickup").value;
+      const ret = document.getElementById("return").value;
+      const name = document.getElementById("customerName").value;
+      const contact = document.getElementById("contact").value;
+
+      if (!type || !pickup || !ret || !name || !contact) {
+        alert("Please fill in all fields.");
+        return false;
+      }
+
+      if (pickup >= ret) {
+        alert("Return date must be after pickup date.");
+        return false;
+      }
+
+      return true;
+    }
+  </script>
+</head>
+<body>
+
+  <h2>Vehicle Rental Reservation</h2>
+
+  <form action="vehicle_process.php" method="POST" onsubmit="return validateForm()">
+    <label>Vehicle Type:</label>
+    <select name="vehicleType" id="vehicleType" required>
+      <option value="">-- Select Vehicle --</option>
+      <option value="Car">Car</option>
+      <option value="Bike">Bike</option>
+      <option value="Van">Van</option>
+    </select>
+
+    <label>Pickup Date:</label>
+    <input type="date" name="pickup" id="pickup" required>
+
+    <label>Return Date:</label>
+    <input type="date" name="return" id="return" required>
+
+    <label>Customer Name:</label>
+    <input type="text" name="customerName" id="customerName" required>
+
+    <label>Contact Number:</label>
+    <input type="text" name="contact" id="contact" required>
+
+    <button type="submit">Reserve Vehicle</button>
+  </form>
+
+</body>
+</html>

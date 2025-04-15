@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Stock Management</title>
+  <style>
+    body { font-family: Arial; background: #f1f8e9; padding: 20px; }
+    form { background: #fff; padding: 20px; width: 340px; margin: auto; border-radius: 8px; }
+    input { width: 100%; margin: 8px 0; padding: 8px; }
+    button { background: #558b2f; color: white; border: none; padding: 10px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <form action="stock.php" method="POST" onsubmit="return validateStockForm()">
+    <input type="text" name="product" placeholder="Product Name" required>
+    <input type="number" name="current_qty" placeholder="Current Quantity (read-only)" value="50" readonly>
+    <input type="number" name="order_qty" placeholder="Quantity to Order" required>
+    <input type="text" name="supplier" placeholder="Supplier Name" required>
+    <input type="number" name="cost" placeholder="Cost Per Unit" step="0.01" required>
+    <button type="submit">Place Order</button>
+  </form>
+
+  <script>
+    function validateStockForm() {
+      const orderQty = parseInt(document.querySelector('input[name="order_qty"]').value);
+      const cost = parseFloat(document.querySelector('input[name="cost"]').value);
+
+      if (orderQty <= 0 || isNaN(orderQty)) {
+        alert("Quantity to order must be a positive number.");
+        return false;
+      }
+      if (cost <= 0 || isNaN(cost)) {
+        alert("Cost per unit must be a positive number.");
+        return false;
+      }
+      return true;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GPA Calculator</title>
+  <style>
+    body { font-family: Arial; background: #e3f2fd; padding: 20px; }
+    form { background: #fff; padding: 20px; width: 300px; margin: auto; border-radius: 8px; }
+    input { width: 100%; margin: 8px 0; padding: 8px; }
+    button { background: #3f51b5; color: white; border: none; padding: 10px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <form action="gpa.php" method="POST" onsubmit="return validateGPA()">
+    <input type="text" name="name" placeholder="Student Name" required>
+    <input type="text" name="g1" placeholder="Course 1 Grade (A-F)" required>
+    <input type="text" name="g2" placeholder="Course 2 Grade (A-F)" required>
+    <input type="text" name="g3" placeholder="Course 3 Grade (A-F)" required>
+    <input type="text" name="g4" placeholder="Course 4 Grade (A-F)" required>
+    <input type="text" name="g5" placeholder="Course 5 Grade (A-F)" required>
+    <button type="submit">Calculate GPA</button>
+  </form>
+
+  <script>
+    function validateGPA() {
+      const validGrades = ['A', 'B', 'C', 'D', 'F'];
+      const inputs = [g1, g2, g3, g4, g5] = 
+        ['g1', 'g2', 'g3', 'g4', 'g5'].map(name => document.querySelector(`input[name="${name}"]`).value.toUpperCase());
+
+      for (let grade of inputs) {
+        if (!validGrades.includes(grade)) {
+          alert("Please enter valid grades (A, B, C, D, F).");
+          return false;
+        }
+      }
+      return true;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Investment Portfolio Tracker</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f5f7fa;
+      padding: 20px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+    }
+
+    form {
+      background-color: #fff;
+      padding: 20px;
+      max-width: 450px;
+      margin: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.1);
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      color: #34495e;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      box-sizing: border-box;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px;
+      width: 100%;
+      background-color: #8e44ad;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+
+  <script>
+    function validateForm() {
+      const investment = parseFloat(document.getElementById("investment").value);
+      const current = parseFloat(document.getElementById("current").value);
+
+      if (
+        !document.getElementById("name").value ||
+        isNaN(investment) || investment <= 0 ||
+        !document.getElementById("date").value ||
+        isNaN(current) || current <= 0
+      ) {
+        alert("Please enter valid values for all fields.");
+        return false;
+      }
+
+      return true;
+    }
+  </script>
+</head>
+<body>
+
+  <h2>Investment Portfolio Tracker</h2>
+
+  <form action="investment_process.php" method="POST" onsubmit="return validateForm()">
+    <label>Investment Name:</label>
+    <input type="text" name="name" id="name" required>
+
+    <label>Investment Amount (₹):</label>
+    <input type="number" name="investment" id="investment" step="0.01" required>
+
+    <label>Investment Date:</label>
+    <input type="date" name="date" id="date" required>
+
+    <label>Current Value (₹):</label>
+    <input type="number" name="current" id="current" step="0.01" required>
+
+    <button type="submit">Calculate ROI</button>
+  </form>
+
+</body>
+</html>

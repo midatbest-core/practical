@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Inventory Tracker</title>
+  <style>
+    body { font-family: Arial; background: #f3e5f5; padding: 20px; }
+    form { background: #fff; padding: 20px; width: 320px; margin: auto; border-radius: 8px; }
+    input { width: 100%; margin: 8px 0; padding: 8px; }
+    button { background: #8e24aa; color: white; border: none; padding: 10px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <form action="inventory.php" method="POST" onsubmit="return validateInventory()">
+    <input type="text" name="product" placeholder="Product Name" required>
+    <input type="number" name="current_stock" placeholder="Quantity In Stock" required>
+    <input type="number" name="new_stock" placeholder="New Stock Quantity" required>
+    <input type="text" name="supplier" placeholder="Supplier Name" required>
+    <input type="number" step="0.01" name="cost" placeholder="Cost Per Unit" required>
+    <button type="submit">Update Inventory</button>
+  </form>
+
+  <script>
+    function validateInventory() {
+      const newStock = parseInt(document.querySelector('input[name="new_stock"]').value);
+      const cost = parseFloat(document.querySelector('input[name="cost"]').value);
+      if (newStock <= 0 || isNaN(newStock)) {
+        alert("New stock must be a positive integer.");
+        return false;
+      }
+      if (cost <= 0 || isNaN(cost)) {
+        alert("Cost must be a positive number.");
+        return false;
+      }
+      return true;
+    }
+  </script>
+</body>
+</html>

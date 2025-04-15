@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Grade Calculator</title>
+  <style>
+    body { font-family: Arial; background: #fefbd8; padding: 20px; }
+    form { background: #fff; padding: 20px; width: 300px; margin: auto; border-radius: 8px; }
+    input { width: 100%; margin: 8px 0; padding: 8px; }
+    button { background: #007bff; color: white; border: none; padding: 10px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <form action="grade.php" method="POST" onsubmit="return validateGrades()">
+    <input type="text" name="name" placeholder="Student Name" required>
+    <input type="number" name="s1" placeholder="Subject 1 Score" required>
+    <input type="number" name="s2" placeholder="Subject 2 Score" required>
+    <input type="number" name="s3" placeholder="Subject 3 Score" required>
+    <input type="number" name="s4" placeholder="Subject 4 Score" required>
+    <input type="number" name="s5" placeholder="Subject 5 Score" required>
+    <button type="submit">Calculate Grade</button>
+  </form>
+
+  <script>
+    function validateGrades() {
+      let valid = true;
+      const scores = document.querySelectorAll('input[type="number"]');
+      scores.forEach(score => {
+        if (score.value === '' || score.value < 0 || score.value > 100) {
+          alert("Scores must be between 0 and 100");
+          valid = false;
+        }
+      });
+      return valid;
+    }
+  </script>
+</body>
+</html>

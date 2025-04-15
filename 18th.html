@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fitness Tracker</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #eaf6f6;
+      padding: 20px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #34495e;
+    }
+
+    form {
+      background-color: #ffffff;
+      padding: 20px;
+      max-width: 450px;
+      margin: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      color: #2c3e50;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      box-sizing: border-box;
+    }
+
+    .intensity {
+      margin-top: 10px;
+    }
+
+    .intensity label {
+      display: inline;
+      margin-right: 10px;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px;
+      width: 100%;
+      background-color: #16a085;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+
+  <script>
+    function validateForm() {
+      const duration = parseInt(document.getElementById("duration").value);
+      const goal = parseFloat(document.getElementById("goal").value);
+
+      if (isNaN(duration) || duration <= 0 || isNaN(goal) || goal <= 0) {
+        alert("Duration and calorie goal must be positive numbers.");
+        return false;
+      }
+
+      return true;
+    }
+  </script>
+</head>
+<body>
+
+  <h2>Fitness Tracker & Calorie Calculator</h2>
+
+  <form action="fitness_process.php" method="POST" onsubmit="return validateForm()">
+    <label>Activity Type:</label>
+    <select name="activity" id="activity" required>
+      <option value="">-- Select Activity --</option>
+      <option value="Running">Running</option>
+      <option value="Walking">Walking</option>
+      <option value="Cycling">Cycling</option>
+    </select>
+
+    <label>Duration (minutes):</label>
+    <input type="number" name="duration" id="duration" required>
+
+    <div class="intensity">
+      <label>Intensity:</label><br>
+      <label><input type="radio" name="intensity" value="low" required> Low</label>
+      <label><input type="radio" name="intensity" value="moderate"> Moderate</label>
+      <label><input type="radio" name="intensity" value="high"> High</label>
+    </div>
+
+    <label>Calorie Intake Goal:</label>
+    <input type="number" name="goal" id="goal" required>
+
+    <button type="submit">Calculate Calories</button>
+  </form>
+
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Medical Supply Request</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #eef3f7;
+      padding: 20px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #34495e;
+    }
+
+    form {
+      background: #fff;
+      padding: 20px;
+      max-width: 400px;
+      margin: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.1);
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      color: #2c3e50;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      box-sizing: border-box;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px 15px;
+      width: 100%;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+
+  <script>
+    function validateForm() {
+      const name = document.getElementById("supplyName").value;
+      const qty = parseInt(document.getElementById("quantity").value);
+      const supplier = document.getElementById("supplier").value;
+      const date = document.getElementById("deliveryDate").value;
+
+      if (!name || !supplier || qty <= 0 || !date) {
+        alert("Please fill all fields with valid values.");
+        return false;
+      }
+
+      return true;
+    }
+  </script>
+</head>
+<body>
+
+  <h2>Medical Supply Request Form</h2>
+
+  <form action="supply_process.php" method="POST" onsubmit="return validateForm()">
+    <label>Supply Name:</label>
+    <input type="text" name="supplyName" id="supplyName" required>
+
+    <label>Current Quantity:</label>
+    <input type="number" name="currentQty" id="currentQty" value="100" readonly>
+
+    <label>Quantity to Request:</label>
+    <input type="number" name="quantity" id="quantity" required>
+
+    <label>Supplier:</label>
+    <input type="text" name="supplier" id="supplier" required>
+
+    <label>Estimated Delivery Date:</label>
+    <input type="date" name="deliveryDate" id="deliveryDate" required>
+
+    <button type="submit">Submit Request</button>
+  </form>
+
+</body>
+</html>

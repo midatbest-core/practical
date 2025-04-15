@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ingredient Inventory Management</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      padding: 20px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+    }
+
+    form {
+      background: white;
+      padding: 20px;
+      max-width: 400px;
+      margin: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.15);
+    }
+
+    label {
+      margin-top: 10px;
+      display: block;
+      color: #333;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      box-sizing: border-box;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px 15px;
+      width: 100%;
+      background-color: #27ae60;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+
+  <script>
+    function validateForm() {
+      const ingredient = document.getElementById("ingredientName").value;
+      const orderQty = parseInt(document.getElementById("orderQty").value);
+      const supplier = document.getElementById("supplier").value;
+      const cost = parseFloat(document.getElementById("cost").value);
+
+      if (!ingredient || !supplier || orderQty <= 0 || cost <= 0) {
+        alert("All fields must be filled with valid positive values.");
+        return false;
+      }
+
+      return true;
+    }
+  </script>
+</head>
+<body>
+
+  <h2>Ingredient Inventory Order</h2>
+
+  <form action="ingredient_process.php" method="POST" onsubmit="return validateForm()">
+    <label>Ingredient Name:</label>
+    <input type="text" name="ingredientName" id="ingredientName" required>
+
+    <label>Current Quantity:</label>
+    <input type="number" name="currentQty" id="currentQty" value="30" readonly>
+
+    <label>Quantity to Order:</label>
+    <input type="number" name="orderQty" id="orderQty" required>
+
+    <label>Supplier Name:</label>
+    <input type="text" name="supplier" id="supplier" required>
+
+    <label>Cost Per Unit (₹):</label>
+    <input type="number" name="cost" id="cost" step="0.01" required>
+
+    <button type="submit">Place Order</button>
+  </form>
+
+</body>
+</html>

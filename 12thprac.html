@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Equipment Rental</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f2f5;
+      padding: 20px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    form {
+      background-color: white;
+      padding: 20px;
+      margin: auto;
+      border-radius: 10px;
+      max-width: 400px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      box-sizing: border-box;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px 15px;
+      width: 100%;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+
+  <script>
+    function validateForm() {
+      const rentQty = document.getElementById("rentQty").value;
+      const duration = document.getElementById("duration").value;
+      const equipmentName = document.getElementById("equipmentName").value;
+      const customerName = document.getElementById("customerName").value;
+
+      if (!equipmentName || !customerName || rentQty <= 0 || duration <= 0) {
+        alert("All fields must be filled with valid positive values.");
+        return false;
+      }
+
+      return true;
+    }
+  </script>
+</head>
+<body>
+
+  <h2>Equipment Rental Management</h2>
+
+  <form action="rental_process.php" method="POST" onsubmit="return validateForm()">
+    <label>Equipment Name:</label>
+    <input type="text" name="equipmentName" id="equipmentName" required>
+
+    <label>Available Quantity:</label>
+    <input type="number" name="availableQty" id="availableQty" value="10" readonly>
+
+    <label>Quantity to Rent:</label>
+    <input type="number" name="rentQty" id="rentQty" required>
+
+    <label>Rental Duration (in days):</label>
+    <input type="number" name="duration" id="duration" required>
+
+    <label>Customer Name:</label>
+    <input type="text" name="customerName" id="customerName" required>
+
+    <button type="submit">Rent</button>
+  </form>
+
+</body>
+</html>

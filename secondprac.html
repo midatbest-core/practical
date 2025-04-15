@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Workshop Registration</title>
+  <style>
+    body { font-family: Arial; background: #e0f7fa; padding: 20px; }
+    form { background: #fff; padding: 20px; width: 300px; margin: auto; border-radius: 8px; }
+    input, textarea { width: 100%; margin: 8px 0; padding: 8px; }
+    button { background: teal; color: white; border: none; padding: 10px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <form action="workshop.php" method="POST" onsubmit="return validateWorkshopForm()">
+    <input type="text" name="fullname" placeholder="Full Name" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <input type="text" name="company" placeholder="Company Name" required>
+    <input type="text" name="job" placeholder="Job Title" required>
+    <input type="text" name="phone" placeholder="Phone Number" required>
+    <input type="date" name="date" required>
+    <input type="number" name="attendees" placeholder="Number of Attendees" required>
+    <textarea name="requests" placeholder="Special Requests"></textarea>
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    function validateWorkshopForm() {
+      const date = new Date(document.querySelector('input[name="date"]').value);
+      const today = new Date();
+      today.setHours(0,0,0,0);
+      if (date < today) {
+        alert("Workshop date cannot be in the past!");
+        return false;
+      }
+      return true;
+    }
+  </script>
+</body>
+</html>

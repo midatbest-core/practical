@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Book Order Form</title>
+  <style>
+    body { font-family: Arial; background: #fff3e0; padding: 20px; }
+    form { background: #fff; padding: 20px; width: 300px; margin: auto; border-radius: 8px; }
+    input { width: 100%; margin: 8px 0; padding: 8px; }
+    button { background: #fb8c00; color: white; border: none; padding: 10px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <form action="book_order.php" method="POST" onsubmit="return validateOrderForm()">
+    <input type="text" name="title" placeholder="Book Title" required>
+    <input type="text" name="author" placeholder="Author" required>
+    <input type="number" name="price" placeholder="Price (e.g. 299)" required>
+    <input type="number" name="quantity" placeholder="Quantity (1-10)" required>
+    <button type="submit">Order</button>
+  </form>
+
+  <script>
+    function validateOrderForm() {
+      const price = parseFloat(document.querySelector('input[name="price"]').value);
+      const qty = parseInt(document.querySelector('input[name="quantity"]').value);
+
+      if (price <= 0 || isNaN(price)) {
+        alert("Enter a valid price greater than 0.");
+        return false;
+      }
+      if (qty < 1 || qty > 10 || isNaN(qty)) {
+        alert("Quantity must be between 1 and 10.");
+        return false;
+      }
+      return true;
+    }
+  </script>
+</body>
+</html>
